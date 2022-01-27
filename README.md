@@ -4,17 +4,12 @@ Provide `vs2020-sentinel` that control the program `VisualStage 2020`.
 These commands enable users to develop a program by talking to `VisualStage 2020`. 
 
 The command `vs2020-sentinel` is for control `VisualStage 2020` via network.
-See
-[gem package -- visual_stage](https://gitlab.misasa.okayama-u.ac.jp/gems/visual_stage)
-and `vs_attach_image.m` in 
-[Matlab script -- VisualSpots](http://multimed.misasa.okayama-u.ac.jp/repository/matlab/)
-that refer to this package.
 
 # Dependency
 
 ## VisualStage 2020 for Windows
 
-YY confirmed this work with VisualStage 2020.
+YY confirmed this work with VisualStage Version 1.2.2.0.
 
 ## [Python 3.7 for Windows](https://www.python.org/downloads/windows/)
 
@@ -57,24 +52,25 @@ See online document with option `--help`.
 Start VisualStage2020 and lunch vs2020-sentinel as shown below. Revise configuration file (~/.vs2020rc) when necessary.
 
     > vs2020-sentinel
-    reading |C:\Users\yyachi\.vs2020rc| ...
-    2020-09-23 11:06:38,580 INFO:connecting database.misasa.okayama-u.ac.jp:1883
-    publisher...
-    2020-09-23 11:06:38,667 INFO:Connected with result code 0
-    2020-09-23 11:06:38,677 INFO:subscribe topic |stage/ctrl/stage-of-sisyphus-THINK| to receive stage control command...
-    2020-09-23 11:06:40,536 INFO:getting API...
-    2020-09-23 11:06:40,560 INFO:vsapi GET_STAGE_POSITION -> FAILURE
-    2020-09-23 11:06:40,560 INFO:vsapi GET_MARKER_POSITION -> SUCCESS POINT,-1583.126,-2935.833
-    2020-09-23 11:06:40,561 INFO:publish message {"status": {"isConnected": "false", "isRunning": "true", "isAvailable": "true"}, "position": {"x_world": "-1583.126", "y_world": "-2935.833"}} on topic stage/info/stage-of-sisyphus-THINK
-    2020-09-23 11:06:40,561 INFO:published: 2
-    2020-09-23 11:06:41,561 INFO:vsapi GET_STAGE_POSITION -> FAILURE
-    2020-09-23 11:06:41,562 INFO:vsapi GET_MARKER_POSITION -> SUCCESS POINT,-1583.126,-2935.833
-    2020-09-23 11:06:41,562 INFO:publish message {"status": {"isConnected": "false", "isRunning": "true", "isAvailable": "true"}, "position": {"x_world": "-1583.126", "y_world": "-2935.833"}} on topic stage/info/stage-of-sisyphus-THINK
-    2020-09-23 11:06:41,562 INFO:published: 3
-    2020-09-23 11:06:42,563 INFO:vsapi GET_STAGE_POSITION -> FAILURE
-    2020-09-23 11:06:42,564 INFO:vsapi GET_MARKER_POSITION -> SUCCESS POINT,-1583.126,-2935.833
-    2020-09-23 11:06:42,564 INFO:publish message {"status": {"isConnected": "false", "isRunning": "true", "isAvailable": "true"}, "position": {"x_world": "-1583.126", "y_world": "-2935.833"}} on topic stage/info/stage-of-sisyphus-THINK
-    2020-09-23 11:06:42,564 INFO:published: 4
+    reading |C:\Users\SEM\.vs2020rc| ...
+    2022-01-27 16:28:14,345 INFO:version 0.0.1
+    2022-01-27 16:28:14,345 INFO:connecting database.misasa.okayama-u.ac.jp:1883
+    2022-01-27 16:28:14,365 INFO:Connected with result code 0
+    2022-01-27 16:28:14,365 INFO:subscribe topic |stage/ctrl/stage-of-5fBX60| to receive stage control command...
+    2022-01-27 16:28:15,474 INFO:connecting stage controller...
+    2022-01-27 16:28:15,474 INFO:starting thread_position...
+    2022-01-27 16:28:15,474 INFO:publish message {"isStageConnected": "false", "isVSRunning": "true", "isAPIAvailable": "true", "isStageMoving": "false", "dataname": "", "updated_at": "2022-01-27T16:28:15"} on topic stage/status/stage-of-5fBX6
+    2022-01-27 16:28:15,484 INFO:POSITION -> POSITION SUCCESS,-338.86148,471.68106 (response: 0.01 sec) in position
+    2022-01-27 16:28:15,494 INFO:publish message {"x_world": "-338.86148", "y_world": "471.68106", "updated_at": "2022-01-27T16:28:15"} on topic stage/position/stage-of-5fBX60
+    2022-01-27 16:28:15,494 INFO:publish message {"command": "POSITION", "output": "POSITION SUCCESS,-338.86148,471.68106", "response": 0.010000228881835938, "updated_at": "2022-01-27T16:28:15"} on topic stage/info/stage-of-5fBX60
+    2022-01-27 16:28:16,475 INFO:publish message {"isStageConnected": "true", "isVSRunning": "true", "isAPIAvailable": "true", "isStageMoving": "false", "dataname": "", "updated_at": "2022-01-27T16:28:16"} on topic stage/status/stage-of-5fBX60
+    2022-01-27 16:28:16,495 INFO:POSITION -> POSITION SUCCESS,-338.86148,471.68106 (response: 0.00 sec) in position
+    2022-01-27 16:28:16,495 INFO:publish message {"x_world": "-338.86148", "y_world": "471.68106", "updated_at": "2022-01-27T16:28:16"} on topic stage/position/stage-of-5fBX60
+    2022-01-27 16:28:16,495 INFO:publish message {"command": "POSITION", "output": "POSITION SUCCESS,-338.86148,471.68106", "response": 0.0, "updated_at": "2022-01-27T16:28:16"} on topic stage/info/stage-of-5fBX60
+    2022-01-27 16:28:17,475 INFO:publish message {"isStageConnected": "true", "isVSRunning": "true", "isAPIAvailable": "true", "isStageMoving": "false", "dataname": "", "updated_at": "2022-01-27T16:28:17"} on topic stage/status/stage-of-5fBX60
+    2022-01-27 16:28:17,495 INFO:POSITION -> POSITION SUCCESS,-338.86148,471.68106 (response: 0.00 sec) in position
+    2022-01-27 16:28:17,495 INFO:publish message {"x_world": "-338.86148", "y_world": "471.68106", "updated_at": "2022-01-27T16:28:17"} on topic stage/position/stage-of-5fBX60
+    2022-01-27 16:28:17,495 INFO:publish message {"command": "POSITION", "output": "POSITION SUCCESS,-338.86148,471.68106", "response": 0.0, "updated_at": "2022-01-27T16:28:17"} on topic stage/info/stage-of-5fBX60
     ....
 
 ### Example of configuration file
