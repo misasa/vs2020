@@ -4,6 +4,7 @@ import sys, os
 import logging
 import vs2020
 import vs2020.tcp_client
+import vs2020.process
 from vs2020._version import __version__ as VERSION
 import socket
 import select
@@ -34,6 +35,7 @@ stage_info = {	"status": _status,
 }
 
 is_mqtt_connected = False
+is_vs_running = False
 config = None
 is_tcp_connected = False
 
@@ -133,6 +135,7 @@ def _thread_move(data, client, options):
 
 def _thread_position(client, options):
   global is_tcp_connected
+  global is_vs_running
   logging.info("starting thread_position...")
   try:
     _w = vs2020.tcp_client.TcpClient(options)
@@ -145,12 +148,14 @@ def _thread_position(client, options):
       line = "{0} -> {1} (response: {2:.2f} sec) in position".format(command, output, _dt)
       logging.info(line)
       vals = output.split()
-      status = vals[1]
+      vals = vals[1].split(',')
+      print(vals)
+      status = vals[0]
       if status == 'SUCCESS':
         stage_info['status']['isStageConnected'] = "true"
-        vv = vals[2].split(',')
-        stage_info['position']['x_world'] = vv[1]
-        stage_info['position']['y_world'] = vv[2]
+        #vv = vals[1].split(',')
+        stage_info['position']['x_world'] = vals[1]
+        stage_info['position']['y_world'] = vals[2]
       elif status == 'FAILURE':
         stage_info['status']['isStageConnected'] = "false"
 
@@ -162,6 +167,8 @@ def _thread_position(client, options):
   except Exception as e:
     print(e, file=sys.stderr)
     is_tcp_connected = False
+    is_vs_running = False
+    vs2020.process.VS2020Process.pid = None
 
 # ブローカーに接続できたときの処理
 def on_connect(client, userdata, flag, rc):
@@ -210,9 +217,17 @@ def publisher(client):
             continue
         stage_info['position']['x_world'] = ""
         stage_info['position']['y_world'] = ""
-        stage_info["status"]["isVSRunning"] = "false"
-        stage_info["status"]["isAPIAvailable"] = "false"
+        #stage_info["status"]["isVSRunning"] = "false"
+        #stage_info["status"]["isAPIAvailable"] = "false"
         stage_info["status"]["dataname"] = ""
+
+        if not is_vs_running:
+          if vs2020.process.VS2020Process.is_running():
+            is_vs_running = True
+            stage_info["status"]["isVSRunning"] = "true"
+          else:
+            is_vs_running = False
+            stage_info["status"]["isVSRunning"] = "false"
 
         if not is_tcp_connected:
           _check_tcp_connection(options)
@@ -220,9 +235,9 @@ def publisher(client):
             thread1 = Thread(target=_thread_position, args=(client, options,))
             thread1.setDaemon(True)
             thread1.start()
-            #stage_info["status"]["isAPIAvailable"] = "true"
+            stage_info["status"]["isAPIAvailable"] = "true"
           else:
-            #stage_info["status"]["isAPIAvailable"] = "false"
+            stage_info["status"]["isAPIAvailable"] = "false"
             stage_info["status"]["isStageConnected"] = "false"
             stage_info['position']['x_world'] = ""
             stage_info['position']['y_world'] = ""

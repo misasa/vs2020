@@ -24,7 +24,7 @@ def recv_client(s, addr):
             vals = command.split()
             cmd = vals[0]
             if cmd == "POSITION":
-                msg = "POSITION SUCCESS ,1.000,2.000"
+                msg = "POSITION SUCCESS,1.000,2.000"
                 time.sleep(2)
             elif cmd == "MOVE":
                 msg = "MOVE SUCCESS"
