@@ -18,7 +18,7 @@ default_config = {
 		'mqtt_port': 1883,
 		'tcp_host': '127.0.0.1',
 		'tcp_port': '25252',
-		'timeout': 5000,
+		'timeout': 10000,
 }
 
 def config():
