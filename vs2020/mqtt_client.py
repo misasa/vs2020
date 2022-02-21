@@ -70,7 +70,7 @@ EXAMPLE
     CMD> vs2020-sentinel --stage-name myStage --timeout 8000 
 SEE ALSO
   http://dream.misasa.okayama-u.ac.jp
-  https://gitlab.misasa.okayama-u.ac.jp/pythonpackage/vs2020/blob/master/vs2020/command_api.py
+  https://github.com/misasa/vs2020/blob/master/vs2020/command_api.py
 
 IMPLEMENTATION
   Orochi, version 9
