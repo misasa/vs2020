@@ -21,7 +21,7 @@ This is a command-line user interface for VisualStage2020.""",
             'psutil',
             'requests',
             "PyYAML",
-            "pillow",
+#            "pillow",
             "paho-mqtt",
           # -*- Extra requirements: -*-
       ],
