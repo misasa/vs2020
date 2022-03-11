@@ -1,5 +1,5 @@
-from PIL import Image
-import imghdr
+#from PIL import Image
+#import imghdr
 import os
 import sys
 import hashlib
