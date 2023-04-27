@@ -32,7 +32,7 @@ SYNOPSIS AND USAGE
   %prog [options]
 
 DESCRIPTION
-    Tcp client for vs-remote app. This program
+    TCP client for stage-view app. This program
     communicates with stage controller.
     Note that this program reads `~/.vs2020rc' for configuration.
 
@@ -46,11 +46,11 @@ EXAMPLE
 
 SEE ALSO
   http://dream.misasa.okayama-u.ac.jp
-  https://github.com/misasa/vs2020/blob/master/vs2020/command_api.py
+  https://github.com/misasa/vs2020/blob/master/vs2020/tcp_client.py
 
 IMPLEMENTATION
   Orochi, version 9
-  Copyright (C) 2014-2020 Okayama University
+  Copyright (C) 2014-2022 Okayama University
   License GPLv3+: GNU GPL version 3 or later
 
 HISTORY
@@ -59,7 +59,7 @@ HISTORY
   parser.add_option("-v","--verbose",action="store_true",dest="verbose",default=False,help="make lots of noise")
   parser.add_option("--tcp-host",action="store",type="string",dest="tcp_host",default=config['tcp_host'],help="set the address of the Stage controller (default: %default) which the program will connect to.")
   parser.add_option("--tcp-port",action="store",type="int",dest="tcp_port",default=config['tcp_port'],help="set the port of the Stage controller (default: %default) which the program will connect to.")
-#    parser.add_option("--tls-path",action="store",type="string",dest="tls_path", default=config['tls_path'],help="set the tls file path of the MQTT broker (default: %default) which the program will connect to.")
+  # parser.add_option("--tls-path",action="store",type="string",dest="tls_path", default=config['tls_path'],help="set the tls file path of the MQTT broker (default: %default) which the program will connect to.")
   parser.add_option("--timeout",action="store",type="int",dest="timeout",default=config['timeout'],help="set timeout in msec (default: %default)")
   parser.add_option("-l","--log_level",dest="log_level",default="INFO",help="set log level")
 

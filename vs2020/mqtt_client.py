@@ -13,7 +13,7 @@ import paho.mqtt.client as mqtt
 import json
 import datetime
 import time
-from time import sleep 
+from time import sleep
 
 import signal
 signal.signal(signal.SIGINT,signal.SIG_DFL)
@@ -50,9 +50,9 @@ SYNOPSIS AND USAGE
   %prog [options]
 
 DESCRIPTION
-    MQTT publisher and subscriber for vs-remote app. This program
+    MQTT publisher and subscriber for stage-view app. This program
     publishes stage or marker position regulary and receives commands
-    from vs-remote app.
+    from stage-view app.
     Note that this program reads `~/.vs2020rc' for configuration.
     Set `stage-name' line on the configuration file as below.
 
@@ -62,19 +62,19 @@ DESCRIPTION
     line on the configration file as below and raise the
     value.  Default setting is 5000 mseconds.
 
-    timeout: 5000  
+    timeout: 5000
 
 EXAMPLE
     CMD> vs2020-sentinel
     CMD> vs2020-sentinel --stage-name myStage
-    CMD> vs2020-sentinel --stage-name myStage --timeout 8000 
+    CMD> vs2020-sentinel --stage-name myStage --timeout 8000
 SEE ALSO
   http://dream.misasa.okayama-u.ac.jp
-  https://github.com/misasa/vs2020/blob/master/vs2020/command_api.py
+  https://github.com/misasa/vs2020/blob/master/vs2020/mqtt_client.py
 
 IMPLEMENTATION
   Orochi, version 9
-  Copyright (C) 2014-2020 Okayama University
+  Copyright (C) 2014-2022 Okayama University
   License GPLv3+: GNU GPL version 3 or later
 
 HISTORY
@@ -110,7 +110,7 @@ def _check_tcp_connection(options):
   except Exception as e:
     print(e, file=sys.stderr)
     is_tcp_connected = False
-    
+
 def _thread_move(data, client, options):
     global stage_info
     global is_mqtt_connected
@@ -177,7 +177,7 @@ def on_connect(client, userdata, flag, rc):
     logging.info("Connected with result code " + str(rc))
     is_mqtt_connected = True
     logging.info("subscribe topic |%s| to receive stage control command..." % options.topic_ctrl)
-    client.subscribe(options.topic_ctrl)  # subするトピックを設定 
+    client.subscribe(options.topic_ctrl)  # subするトピックを設定
 
 # ブローカーが切断したときの処理
 def on_disconnect(client, userdata, flag, rc):
@@ -259,14 +259,14 @@ def publish_message(client, topic, message):
       if rc[0] == mqtt.MQTT_ERR_NO_CONN:
           is_mqtt_connected = False
           logging.info("waiting connection...")
-  
+
 def main():
     global options
     (options, args) = _parse_options()
     logging.basicConfig(level=options.log_level.upper(), format='%(asctime)s %(levelname)s:%(message)s')
     logging.info("version %s" % VERSION)
     logging.debug(options)
-    
+
     client = mqtt.Client()                 # クラスのインスタンス(実体)の作成
     client.on_connect = on_connect         # 接続時のコールバック関数を登録
     client.on_disconnect = on_disconnect   # 切断時のコールバックを登録
@@ -280,6 +280,6 @@ def main():
         publisher(client)
     except Exception as e:
         print(e, file=sys.stderr)
-    
+
 if __name__ == '__main__':
     main()
