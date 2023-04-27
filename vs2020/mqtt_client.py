@@ -74,7 +74,7 @@ SEE ALSO
 
 IMPLEMENTATION
   Orochi, version 9
-  Copyright (C) 2014-2022 Okayama University
+  Copyright (C) 2014-2023 Okayama University
   License GPLv3+: GNU GPL version 3 or later
 
 HISTORY
