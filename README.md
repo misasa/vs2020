@@ -1,7 +1,7 @@
 # python package -- vs2020
 
-Provide `vs2020-sentinel` that control the program `VisualStage 2020`.
-These commands enable users to develop a program by talking to `VisualStage 2020`. 
+Provide `vs2020-sentinel` that controls the program `VisualStage 2020`.
+This command enables users to develop a program by talking to `VisualStage 2020`. 
 
 The command `vs2020-sentinel` is for control `VisualStage 2020` via network.
 
