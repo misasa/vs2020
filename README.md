@@ -15,7 +15,7 @@ YY confirmed this work with VisualStage Version 1.2.2.0.
 
 Include "C:\Python37\;C:\Python37\Scripts\" in %PATH%.
 
-## [mqtt-proj--stage-view](https://gitlab.misasa.okayama-u.ac.jp/DREAM/stage-view)
+## [MQTT project stage-view](https://gitlab.misasa.okayama-u.ac.jp/DREAM/stage-view)
 
 # Installation
 
